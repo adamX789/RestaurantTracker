@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Síť tvůrců</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><img src="{% static 'images/collabo logo zelene.png' %}" alt=""></div>
+    <a href="/login/"><button class="login-btn">Přihlásit se</button></a>
+  </header>
+
+  <div class="hero">
+    <div class="image-side">
+      <img src="{% static 'images/cowork.png' %}" alt="Pracující lidé" />
+    </div>
+    <div class="text-side">
+      <h1>Poznávejte lidi, kteří pracují na něčem velkém</h1>
+      <p>Více, než jen cowork. Procházejte přesná místa, kde někdo pracuje, objevte nové příležitosti i zážitky.</p>
+        <a href="/register/"><button>Přidat se do sítě</button></a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{restaurant.name}}
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'lokace.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>{{restaurant.name}}</h1>
+        {% if not profile.in_restaurant %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="login-button" name="enter" value="e">Jsem tu!</button>
+        </form>
+        {% elif profile.restaurant == restaurant %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="logout-button-2" name="logout" value="l">Odhlásit se!</button>
+        </form>
+      {% else %}
+      <h6>Už jste přihlášeni v restauraci {{profile.restaurant.name}}, pokud se chcete přihlásit k tomuto místu, odhlašte se z {{profile.restaurant.name}}</h6>
+      <p></p>
+      {% endif %}
+    </header>
+    <img src="{{restaurant.image}}" alt="Místo 1" class="restaurant_img">
+    <section class="users-section">
+      <h2>Uživatelé</h2>
+      <div class="users-grid">
+        {% for person in people %}
+        <div class="user-card">
+          <div class="emoji">👤</div>
+          <div class="username">{{person.profile.user.username}}</div>
+          <div class="description">{{person.profile.motto.text}}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="reviews-section">
+        <h2>Recenze</h2>
+        {% for r in reviews %}
+        <div class="review-card">
+          <p class="review-text">{{r.text}}</p>
+          <p class="review-author">— {{r.profile.user.username}}.</p>
+        </div>
+        {% endfor %}
+        <a href="{% url 'add' restaurant.id %}"><button class="login-button">+ Přidat recenzi</button></a>
+      </section>
+  
+    <section class="locations-section">
+        <h2>Lokace</h2>
+        <p></p>
+        <div id="mapa_mala">
+        </div>
+    </section>
+</div>
+<script>
+    async function initMap() {
+        const coords_data = JSON.parse('{{ coords|escapejs }}');
+        const res_lat = coords_data.lat;
+        const res_lng = coords_data.lng;
+        const { Map } = await google.maps.importLibrary("maps");
+        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+        const map = new Map(document.getElementById("mapa_mala"), {
+            center: { lat: res_lat, lng: res_lng },
+            zoom: 13,
+            mapId: "8624076f34373d3d3cc1f6c4"
+        });
+
+        const marker = new AdvancedMarkerElement({
+            position: { lat: res_lat, lng: res_lng },
+            map: map,
+            title: "{{ restaurant.name }}"
+        });
+    }
+</script>
+
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap&loading=async"></script>
+
+{% endblock %}

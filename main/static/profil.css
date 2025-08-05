@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Mozilla Text", sans-serif;
+    background-color: #f9f9f9;
+    padding: 40px 20px;
+  }
+  
+  .logo img {
+    width: 40px;
+    margin-bottom: 10px;
+  }
+   
+  .profile-section {
+    max-width: 600px;
+    margin: 80px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  .user-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .username {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .slogan {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  .edit-section {
+    text-align: left;
+  }
+  
+  .edit-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+  
+  .edit-section textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+    margin-bottom: 15px;
+  }
+  
+  .edit-button {
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px 18px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .edit-button:hover {
+    background-color: #27ae60;
+  }
+
+  .reviews-section {
+    margin-top: 80px;
+    text-align: center;
+  }
+  
+  .reviews-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+  }
+  
+  .review-card {
+    background-color: white;
+    margin: 0 auto 20px;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: left;
+    position: relative;
+  }
+  
+  .review-text {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .review-author {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #777;
+  }
+  
+  .delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  .delete-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .login-button {
+    margin-top: 30px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #27ae60;
+  }
+  

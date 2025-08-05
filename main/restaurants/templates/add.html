@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Pridat recenzi
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'recenze.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <h2>Recenze pro restauraci {{restaurant.name}}</h2>
+    <p></p>
+    <form action="/restaurants/{{restaurant.id}}/add/" method="POST">
+        {% csrf_token %}
+        Hodnocení (0-10), des. místa oddělte tečkou: <input type="text" name="rating">
+        <p></p>
+        Zpráva (3-300 znaků):
+        <br>
+        <textarea style="height:150px; width:300px;" name="text"></textarea>
+        <p></p>
+        <button type="submit" name="send" class="detail-button">Odeslat recenzi</button>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+            <p></p>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

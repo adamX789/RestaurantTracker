@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Domovská stránka
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'mapa.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Zobrazit místa podle typu:</h3>
+    <form action="/" method="POST">
+        {% csrf_token %}
+        {{form.type}}
+        <button type="submit" class="zobrazit">Zobrazit</button>
+    </form>
+
+    <div id="mapa_velka">
+    </div>
+    {{ locations|json_script:"locations_data_id" }}
+    <script>
+        let map;
+        let infowindow;
+
+        var locationsDataElement = document.getElementById('locations_data_id');
+        var locations = JSON.parse(locationsDataElement.textContent);
+
+        async function initMap() {
+            const { Map } = await google.maps.importLibrary("maps");
+            const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+            map = new Map(document.getElementById("mapa_velka"), {
+                center: { lat: 49.82907, lng: 18.28253 },
+                zoom: 12,
+                mapId: "8624076f34373d3d3cc1f6c4",
+                clickableIcons: false
+            });
+            infowindow = new google.maps.InfoWindow();
+
+            locations.forEach(function (location) {
+                var marker = new AdvancedMarkerElement({
+                    position: { lat: location.lat, lng: location.lng },
+                    map: map,
+                    title: location.name
+                });
+                marker.addListener("click", () => {
+                    infowindow.close();
+
+                    infowindow.setContent("<h3>" + location.name + "<div class=zelena>" + location.people_count + "</div>" + "</h3>" + "<p>" + "<a href='/restaurants/" + location.id + "'>" + "Zobrazit detail" + "</a>");
+                    infowindow.open({
+                        anchor: marker,
+                        map,
+                    });
+                });
+            });
+            map.addListener("click", () => {
+                infowindow.close();
+            });
+        }
+        window.initMap = initMap;
+    </script>
+
+    <script async src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap&loading=async"></script>
+</div>
+{% endblock %}

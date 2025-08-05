@@ -1,0 +1,13 @@
+# Python
+*.pyc
+__pycache__/
+
+# Virtuální prostředí
+venv/
+env/
+
+# Databázové soubory
+db.sqlite3
+
+# Lokální nastavení
+.env

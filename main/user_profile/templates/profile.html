@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} 
+Můj profil
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'profil.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="profile-section">
+    <div class="user-icon">👤</div>
+    <h2 class="username">{{username}}</h2>
+    <p class="slogan">Na čem pracujete: <strong>{{motto}}</strong></p>
+
+    <div class="edit-section">
+      <label for="slogan-input">Upravit slogan:</label>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <textarea id="slogan-input" rows="3" placeholder="Zadejte nový slogan..." name="motto"></textarea>
+        <button type="submit" class="edit-button">Upravit</button>
+      </form>
+    </div>
+</section>
+
+<section class="reviews-section">
+    <h2>Moje recenze</h2>
+    {% for r in reviews %}
+        <div class="review-card">
+            <p class="review-text">{{r.text}}</p>
+            <p class="review-author">— {{r.restaurant.name}}</p>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="delete-button" name="s{{r.id}}" value="s">Smazat recenzi</button>
+            </form>
+        </div>
+    {% endfor %}
+</section>
+{% endblock %}

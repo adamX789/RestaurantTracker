@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    font-family: "Mozilla Text", sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+  }
+  
+  .container {
+    margin-left: 220px; /* stejně jako šířka sidebaru */
+    padding: 40px 20px;
+    max-width: calc(100% - 220px);
+    text-align: center;
+  }
+  
+  .page-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 50px 0 30px;
+  }
+  
+  .places-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+  
+  .place-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+  
+  .place-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .place-card-content {
+    padding: 15px;
+  }
+  
+  .place-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .place-name {
+    margin: 0 0 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .detail-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .detail-button:hover {
+    background-color: #218838;
+  }

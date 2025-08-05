@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Seznam Restauraci
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'mista.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <main class="places-page">
+            <h1 class="page-title">Místa</h1>
+            <section class="places-grid">
+                {% for restaurant in restaurants %}
+                <div class="place-card">
+                    <div class="place-card-content">
+                    <img src="{{restaurant.image}}" alt="Místo 1" class="place-image"/>
+                    <h3 class="place-name">{{restaurant.name}}</h3>
+                    <form action="{% url 'view' restaurant.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="detail-button">Zobrazit detail</button>
+                    </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </section>
+        </main>
+    </div>
+{% endblock %}
