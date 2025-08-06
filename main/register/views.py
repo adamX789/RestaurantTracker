@@ -9,8 +9,10 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('homepage')
+            user = form.save()
+            Profile.objects.create(user=user)
+            login(request, user)
+            return redirect('home')
     else:
         form = RegisterForm()
 
