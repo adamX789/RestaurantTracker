@@ -19,10 +19,14 @@ def get_coords(res):
     adress_string = str(res.address + ", " + res.zipcode +
                         ", " + res.city + ", " + res.country)
     data = gmaps.geocode(adress_string)
-    geometry = data[0]["geometry"]["location"]
-    lat = geometry["lat"]
-    lng = geometry["lng"]
-    return lat, lng
+    if data:
+        geometry = data[0]["geometry"]["location"]
+        lat = geometry["lat"]
+        lng = geometry["lng"]
+        return lat, lng
+    else:
+        # Vrat defaultni hodnoty nebo ošetři chybu jiným způsobem
+        return 0, 0
 
 
 class HomeView(View):
