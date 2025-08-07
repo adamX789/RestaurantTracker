@@ -76,7 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'main.wsgi.application'
 
-CSRF_TRUSTED_ORIGINS = ['https://restauranttracker-production.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ["https://*.railway.app"]
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
